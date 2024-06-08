@@ -151,7 +151,7 @@ function decimalPlaces(num) {
 }
 
 button_equals.addEventListener('click', function() {
-    if (display.includes('/0')) {
+    if (display.includes('/0=')) {
         alert('Division by zero is not allowed!');
         return;
     }
