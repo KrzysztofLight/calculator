@@ -21,37 +21,125 @@ let button_decimal = document.getElementById('decimal');
 let button_backspace = document.getElementById('backspace');
 let button_clear = document.getElementById('clear');
 
-let display = document.getElementById('displayInput');
-
+let display = '';
 
 button_1.addEventListener('click', function() {
-    display.innerHTML += '1';
+    display += '1';
+    document.getElementById('displayInput').value = display;
 })
 button_2.addEventListener('click', function() {
-    display.innerHTML += '2';
+    display += '2';
+    document.getElementById('displayInput').value = display;
 })
 button_3.addEventListener('click', function() {
-    display.innerHTML += '3';
+    display += '3';
+    document.getElementById('displayInput').value = display;
 })
 button_4.addEventListener('click', function() {
-    display.innerHTML += '4';
+    display += '4';
+    document.getElementById('displayInput').value = display;
 })
 button_5.addEventListener('click', function() {
-    display.innerHTML += '5';
+    display += '5';
+    document.getElementById('displayInput').value = display;
 })
 button_6.addEventListener('click', function() {
-    display.innerHTML += '6';
+    display += '6';
+    document.getElementById('displayInput').value = display;
 })
 button_7.addEventListener('click', function() {
-    display.innerHTML += '7';
+    display += '7';
+    document.getElementById('displayInput').value = display;
 })
 button_8.addEventListener('click', function() {
-    display.innerHTML += '8';
+    display += '8';
+    document.getElementById('displayInput').value = display;
 })
 button_9.addEventListener('click', function() {
-    display.innerHTML += '9';
+    display += '9';
+    document.getElementById('displayInput').value = display;
 })
 button_0.addEventListener('click', function() {
-    display.innerHTML += '0';
+    display += '0';
+    document.getElementById('displayInput').value = display;
 })
-console.log(display)
+
+
+button_add.addEventListener('click', function() {
+    if (checkLastSign()) {
+        display += '+';
+        display = display.slice(0, -1);
+        document.getElementById('displayInput').value = display;
+    }
+    else{
+        display += '+';
+        document.getElementById('displayInput').value = display;
+    }
+})
+button_subtract.addEventListener('click', function() {
+    if (checkLastSign()) {
+        display += '-';
+        display = display.slice(0, -1);
+        document.getElementById('displayInput').value = display;
+    }
+    else{
+        display += '-';
+        document.getElementById('displayInput').value = display;
+    }
+})
+button_multiply.addEventListener('click', function() {
+    if (checkLastSign()) {
+        display += '*';
+        display = display.slice(0, -1);
+        document.getElementById('displayInput').value = display;
+    }
+    else{
+        display += '*';
+        document.getElementById('displayInput').value = display;
+    }
+})
+button_divide.addEventListener('click', function() {
+    if (checkLastSign()) {
+        display += '/';
+        display = display.slice(0, -1);
+        document.getElementById('displayInput').value = display;
+    }
+    else{
+        display += '/';
+        document.getElementById('displayInput').value = display;
+    }
+})
+
+function checkLastSign() {
+    let lastSign = display.slice(-1);
+    if (lastSign == '+' || lastSign == '-' || lastSign == '*' || lastSign == '/') {
+        return true;
+    }
+    return false;
+}
+
+
+let lastEqualtion = '';
+
+button_equals.addEventListener('click', function() {
+    lastEqualtion = display;
+    document.getElementById('displayPrevEval').value = lastEqualtion + '=';
+    let result = eval(display);
+    display = result.toString();
+    document.getElementById('displayInput').value = display;
+    console.log(display);
+})
+
+button_clear.addEventListener('click', function() {
+    display = '';
+    document.getElementById('displayInput').value = display;
+})
+button_backspace.addEventListener('click', function() {
+    display = display.slice(0, -1);
+    document.getElementById('displayInput').value = display;
+})
+
+button_decimal.addEventListener('click', function() {
+    display += '.';
+    document.getElementById('displayInput').value = display;
+})

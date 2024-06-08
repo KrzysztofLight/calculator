@@ -11,7 +11,7 @@ main{
     background-attachment: fixed;
 }
 
-@media only screen and (max-width: 630px), (max-height: 675px) {
+@media only screen and (max-width: 630px), (max-height: 720px) {
     body {
         display: none;
     }
@@ -60,4 +60,15 @@ main{
 #equals{
     grid-column: span 2;
     color: rgb(0, 0, 0);
+}
+
+#displayPrevEval{
+    width: 99%;
+    height: 50px;
+    font-size: 20px;
+    text-align: right;
+    color: rgb(0, 0, 0);
+    background-image: linear-gradient(to left top, rgba(231, 183, 23, 0.452),rgba(187, 255, 0, 0.452));
+    color: rgb(9, 59, 116);
+    justify-self: end;
 }
