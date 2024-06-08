@@ -23,6 +23,7 @@ let button_clear = document.getElementById('clear');
 
 let display = '';
 
+
 button_1.addEventListener('click', function() {
     display += '1';
     document.getElementById('displayInput').value = display;
@@ -122,6 +123,11 @@ function checkLastSign() {
 let lastEqualtion = '';
 
 button_equals.addEventListener('click', function() {
+    let equationParts = display.split('/');
+    if (equationParts.length > 1 && equationParts[1] == '0') {
+        alert('Error: Division by zero is not allowed');
+        return;
+    }
     lastEqualtion = display;
     document.getElementById('displayPrevEval').value = lastEqualtion + '=';
     let result = eval(display);
@@ -143,3 +149,4 @@ button_decimal.addEventListener('click', function() {
     display += '.';
     document.getElementById('displayInput').value = display;
 })
+
