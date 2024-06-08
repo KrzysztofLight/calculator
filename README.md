@@ -1,1 +1,2 @@
-# NewApp
+# Calculator
+simple calculator
