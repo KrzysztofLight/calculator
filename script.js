@@ -122,10 +122,11 @@ function checkLastSign() {
 
 let lastEqualtion = '';
 
+
+
 button_equals.addEventListener('click', function() {
-    let equationParts = display.split('/');
-    if (equationParts.length > 1 && equationParts[1] == '0') {
-        alert('Error: Division by zero is not allowed');
+    if (display.includes('/0')) {
+        alert('Division by zero is not allowed!');
         return;
     }
     lastEqualtion = display;
