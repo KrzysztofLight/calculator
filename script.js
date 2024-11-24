@@ -24,49 +24,70 @@ let button_clear = document.getElementById('clear');
 let display = '';
 
 
+function isNaNDisplay() {
+    return isNaN(parseFloat(display));
+}
+function isNaNDisplayForNumbers() {
+    if (display == 'NaN') {
+        display = '';
+        document.getElementById('displayInput').value = display;
+    }
+}
+
 button_1.addEventListener('click', function() {
+    isNaNDisplayForNumbers();
     display += '1';
     document.getElementById('displayInput').value = display;
 })
 button_2.addEventListener('click', function() {
+    isNaNDisplayForNumbers();
     display += '2';
     document.getElementById('displayInput').value = display;
 })
 button_3.addEventListener('click', function() {
+    isNaNDisplayForNumbers();
     display += '3';
     document.getElementById('displayInput').value = display;
 })
 button_4.addEventListener('click', function() {
+    isNaNDisplayForNumbers();
     display += '4';
     document.getElementById('displayInput').value = display;
 })
 button_5.addEventListener('click', function() {
+    isNaNDisplayForNumbers();
     display += '5';
     document.getElementById('displayInput').value = display;
 })
 button_6.addEventListener('click', function() {
+    isNaNDisplayForNumbers();
     display += '6';
     document.getElementById('displayInput').value = display;
 })
 button_7.addEventListener('click', function() {
+    isNaNDisplayForNumbers();
     display += '7';
     document.getElementById('displayInput').value = display;
 })
 button_8.addEventListener('click', function() {
+    isNaNDisplayForNumbers();
     display += '8';
     document.getElementById('displayInput').value = display;
 })
 button_9.addEventListener('click', function() {
+    isNaNDisplayForNumbers();
     display += '9';
     document.getElementById('displayInput').value = display;
 })
 button_0.addEventListener('click', function() {
+    isNaNDisplayForNumbers();
     display += '0';
     document.getElementById('displayInput').value = display;
 })
 
 
 button_add.addEventListener('click', function() {
+    if (isNaNDisplay()) return;
     if (checkLastSign()) {
         display += '+';
         display = display.slice(0, -1);
@@ -78,6 +99,7 @@ button_add.addEventListener('click', function() {
     }
 })
 button_subtract.addEventListener('click', function() {
+    if (isNaNDisplay()) return;
     if (checkLastSign()) {
         display += '-';
         display = display.slice(0, -1);
@@ -89,6 +111,7 @@ button_subtract.addEventListener('click', function() {
     }
 })
 button_multiply.addEventListener('click', function() {
+    if (isNaNDisplay()) return;
     if (checkLastSign()) {
         display += '*';
         display = display.slice(0, -1);
@@ -100,6 +123,7 @@ button_multiply.addEventListener('click', function() {
     }
 })
 button_divide.addEventListener('click', function() {
+    if (isNaNDisplay()) return;
     if (checkLastSign()) {
         display += '/';
         display = display.slice(0, -1);
@@ -110,9 +134,25 @@ button_divide.addEventListener('click', function() {
         document.getElementById('displayInput').value = display;
     }
 })
+button_decimal.addEventListener('click', function() {
+    if (isNaNDisplay()) return;
+    let lastNumber = display.split(/[\+\-\*\/\%]/).pop();
+    if (lastNumber.includes('.')) return;
+    if (checkLastSign()) {
+        display += '.';
+        display = display.slice(0, -1);
+        document.getElementById('displayInput').value = display;
+    }
+    else{
+        display += '.';
+        document.getElementById('displayInput').value = display;
+    }
+});
 
 let button_percent = document.getElementById('percent');
 button_percent.addEventListener('click', function() {
+    if (isNaNDisplay()) return;
+    if (display.includes('%')) return;
     if (checkLastSign()) {
         display += '%';
         display = display.slice(0, -1);
@@ -122,11 +162,11 @@ button_percent.addEventListener('click', function() {
         display += '%';
         document.getElementById('displayInput').value = display;
     }
-})
+});
 
 function checkLastSign() {
     let lastSign = display.slice(-1);
-    if (lastSign == '+' || lastSign == '-' || lastSign == '*' || lastSign == '/' || lastSign == '%') {
+    if (lastSign == '+' || lastSign == '-' || lastSign == '*' || lastSign == '/' || lastSign == '%' || lastSign == '.') {
         return true;
     }
     return false;
@@ -176,11 +216,6 @@ button_clear.addEventListener('click', function() {
 })
 button_backspace.addEventListener('click', function() {
     display = display.slice(0, -1);
-    document.getElementById('displayInput').value = display;
-})
-
-button_decimal.addEventListener('click', function() {
-    display += '.';
     document.getElementById('displayInput').value = display;
 })
 
